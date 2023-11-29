@@ -1,5 +1,6 @@
 from pathlib import Path
 from django.http import HttpResponseNotFound, FileResponse
+from django.shortcuts import render
 from .generator.video_generator import create_scrolling_text
 
 def send_file(request):
@@ -20,3 +21,6 @@ def send_file(request):
         response = HttpResponseNotFound('<h1>Something went wrong, sorry :(</h1>')
 
     return response
+
+def home(request):
+    return render(request, 'video_generator/home.html')
