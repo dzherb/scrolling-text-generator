@@ -55,7 +55,6 @@ if __name__ == '__main__':
     text = "Пример движущегося текста..."
     font_path = "arial.ttf"
     font_size = 55
-    output_file = "scrolling_text.mp4"
     duration = 3  # Продолжительность видео в секундах
 
-    create_scrolling_text_video(text, font_path, font_size, output_file, duration=duration)
+    create_scrolling_text_video(text, font_path, font_size, duration=duration)
