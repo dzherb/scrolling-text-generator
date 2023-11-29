@@ -2,5 +2,5 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.send_file, name='send-file'),
+    path('runtext/', views.send_file, name="path-name"),
 ]

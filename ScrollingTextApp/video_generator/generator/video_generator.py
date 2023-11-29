@@ -3,7 +3,7 @@ import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
 
-def create_scrolling_text_video(text, font_path, font_size,
+def create_scrolling_text(text, font_path, font_size,
                                 output_file='video/scrolling_text.mp4',
                                 width=100, height=100, fps=30,
                                 direction='left', duration=3):
@@ -57,4 +57,4 @@ if __name__ == '__main__':
     font_size = 55
     duration = 3  # Продолжительность видео в секундах
 
-    create_scrolling_text_video(text, font_path, font_size, duration=duration)
+    create_scrolling_text(text, font_path, font_size, duration=duration)
