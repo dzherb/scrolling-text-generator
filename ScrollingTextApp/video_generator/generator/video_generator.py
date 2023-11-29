@@ -9,7 +9,7 @@ def create_scrolling_text(text, font_path, font_size,
                           direction='left', duration=3):
     """
     Makes a video with scrolling text.
-    Returns mp4 file.
+    Saves mp4 file to the file_path.
     """
     text_color = (255, 255, 255)
     bg_color = (0, 50, 50)
