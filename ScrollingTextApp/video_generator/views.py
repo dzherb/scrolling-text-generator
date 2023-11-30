@@ -21,15 +21,15 @@ def send_file(request):
         font_size = int(request.GET.get('font_size', f'{DEFAULT_FONT_SIZE}'))
 
         # Get image size as a tuple - (image_width, image_height). Size is in pixels.
-        frame_size = request.GET.get('frame_size', f'{",".join(map(str, DEFAULT_FRAME_SIZE))}')
-        frame_size = tuple(int(dimension.strip()) for dimension in frame_size.split(','))
+        frame_size_str = request.GET.get('frame_size', f'{",".join(map(str, DEFAULT_FRAME_SIZE))}')
+        frame_size = tuple(int(dimension.strip()) for dimension in frame_size_str.split(','))
 
         # Get background color in rgb format as a tuple - (r, g, b)
-        bg_color = request.GET.get('bg_color', f'{",".join(map(str, DEFAULT_BG_COLOR))}')
-        bg_color = tuple(int(color.strip()) for color in bg_color.split(','))
+        bg_color_str = request.GET.get('bg_color', f'{",".join(map(str, DEFAULT_BG_COLOR))}')
+        bg_color = tuple(int(color.strip()) for color in bg_color_str.split(','))
         # Same with text.
-        text_color = request.GET.get('text_color', f'{",".join(map(str, DEFAULT_TEXT_COLOR))}')
-        text_color = tuple(int(color.strip()) for color in text_color.split(','))
+        text_color_str = request.GET.get('text_color', f'{",".join(map(str, DEFAULT_TEXT_COLOR))}')
+        text_color = tuple(int(color.strip()) for color in text_color_str.split(','))
 
         # Get duration of a video in seconds.
         duration = int(request.GET.get('d', f'{DEFAULT_DURATION}').strip())
@@ -52,8 +52,8 @@ def send_file(request):
         response['Content-Disposition'] = f'attachment; filename="{Path(file_location).stem}.mp4"'
 
         # Save prompt to the database
-        prompt = models.Prompt(text=text, font_size=font_size, frame_size=frame_size,
-                               background_color=bg_color, text_color=text_color,
+        prompt = models.Prompt(text=text, font_size=font_size, frame_size=frame_size_str,
+                               bg_color=bg_color_str, text_color=text_color_str,
                                duration=duration, direction=direction)
         prompt.save()
 
