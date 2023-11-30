@@ -5,9 +5,9 @@ from .generator.video_generator import create_scrolling_text
 
 def send_file(request):
     """Makes a video file from user's input and sends it back"""
-    try:
-        # Getting parameters from url.
+    try:  # Getting parameters from url.
         text = request.GET.get('text', 'No input :(').strip()
+
         font_size = int(request.GET.get('font_size', '55'))
 
         # image_size = (image_width, image_height) in pixels
