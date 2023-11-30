@@ -5,15 +5,13 @@ from PIL import Image, ImageDraw, ImageFont
 
 def create_scrolling_text(text, font_path, font_size,
                           file_path='scrolling_text.mp4',
-                          image_width=100, image_height=100, fps=30,
-                          direction='left', duration=3):
+                          image_width=100, image_height=100,
+                          bg_color=(0, 50, 50), text_color=(0, 50, 50),
+                          fps=30, direction='left', duration=3):
     """
     Makes a video with scrolling text.
     Saves mp4 file to the file_path.
     """
-    text_color = (255, 255, 255)
-    bg_color = (0, 50, 50)
-
     font = ImageFont.truetype(font_path, font_size)
 
     # Get text size in pixels

@@ -7,11 +7,14 @@ def send_file(request):
     """Makes a video file from user's input and sends it back"""
     try:
         # Getting 'text' parameter from url
-        text = request.GET.get('text')
+        text = request.GET.get('text', '')
+        font_size = int(request.GET.get('font_size', 55))
+        bg_color = request.GET.get('bg_color', ())
+        print(font_size, type(font_size))
 
         # Generating video
         file_location = 'video_generator/generator/video/scrolling_text.mp4'
-        create_scrolling_text(text, 'arial.ttf', font_size=55, file_path=file_location)
+        create_scrolling_text(text, 'arial.ttf', font_size=font_size, file_path=file_location)
 
         # Creating a response
         response = FileResponse(open(file_location, 'rb'))
