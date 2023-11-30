@@ -10,6 +10,16 @@
 
     <link rel="stylesheet" type="text/css" href="{% static 'latest_prompts/main.css' %}">
     <title>Latest prompts</title>
+    <style type="text/css">
+   TABLE {
+    width: 1000px; /* Ширина таблицы */
+   }
+   TD {
+    text-align: center; /* Выравнивание по центру */
+    border: 1px solid black; /* Параметры рамки */
+    padding: 6px; /* Поля вокруг текста */
+   }
+  </style>
 </head>
 <body>
 
@@ -47,11 +57,11 @@
         </td>
         <td style="border: 1px solid rgb(0, 0, 0);">{{ prompt.frame_size }}
         </td>
-        <td style="border: 1px solid rgb(0, 0, 0);">{{ prompt.bg_color }}
+        <td style="border: 1px solid rgb(0, 0, 0); background: rgb({{ prompt.bg_color }})">
         </td>
-        <td style="border: 1px solid rgb(0, 0, 0);">{{ prompt.text_color }}
+        <td style="border: 1px solid rgb(0, 0, 0); background: rgb({{ prompt.text_color }})">
         </td>
-        <td style="border: 1px solid rgb(0, 0, 0);">{{ prompt.duration }}
+        <td style="border: 1px solid rgb(0, 0, 0);">{{ prompt.duration }} sec
         </td>
         <td style="border: 1px solid rgb(0, 0, 0);">{{ prompt.direction }}
         </td>
