@@ -40,23 +40,21 @@ def send_file(request):
         # Get a direction of a text. It can move to the 'left' side or to the 'right'.
         direction = request.GET.get('dir', DEFAULT_DIRECTION).strip()
 
-        print(text, font_size, frame_size,
-              bg_color, text_color, duration, direction)
+        print(text, font_size, frame_size, bg_color, text_color, duration, direction)
 
         # Generate a video.
         file_location = 'video_generator/generator/video/scrolling_text.mp4'
-        create_scrolling_text(text=text,
-                              font_size=font_size, file_path=file_location, frame_size=frame_size,
+        create_scrolling_text(text=text, font_size=font_size, file_path=file_location, frame_size=frame_size,
                               bg_color=bg_color, text_color=text_color, duration=duration, direction=direction)
 
         # Creating a response.
         response = FileResponse(open(file_location, 'rb'))
         response['Content-Disposition'] = f'attachment; filename="{Path(file_location).stem}.mp4"'
 
-        # Saving prompt to the database
-        prompt = models.Prompt(text=text, font_size=font_size,
-                               frame_size=list(frame_size), background_color=list(bg_color),
-                               text_color=list(text_color), duration=duration, direction=direction)
+        # Save prompt to the database
+        prompt = models.Prompt(text=text, font_size=font_size, frame_size=list(frame_size),
+                               background_color=list(bg_color), text_color=list(text_color),
+                               duration=duration, direction=direction)
         prompt.save()
 
     except (IOError, TypeError, ValueError) as e:
