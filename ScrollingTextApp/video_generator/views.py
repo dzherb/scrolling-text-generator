@@ -9,7 +9,7 @@ def send_file(request):
     """Makes a video file from user's input and sends it back"""
     DEFAULT_TEXT = 'No input :('
     DEFAULT_FONT_SIZE = 55
-    DEFAULT_IMAGE_SIZE = (100, 100)
+    DEFAULT_FRAME_SIZE = (100, 100)
     DEFAULT_BG_COLOR = (0, 0, 0)
     DEFAULT_TEXT_COLOR = (255, 255, 255)
     DEFAULT_DURATION = 3
@@ -21,7 +21,7 @@ def send_file(request):
         font_size = int(request.GET.get('font_size', f'{DEFAULT_FONT_SIZE}'))
 
         # Get image size as a tuple - (image_width, image_height). Size is in pixels.
-        frame_size = request.GET.get('frame_size', f'{",".join(map(str, DEFAULT_IMAGE_SIZE))}')
+        frame_size = request.GET.get('frame_size', f'{",".join(map(str, DEFAULT_FRAME_SIZE))}')
         frame_size = tuple(int(dimension.strip()) for dimension in frame_size.split(','))
 
         # Get background color in rgb format as a tuple - (r, g, b)
@@ -52,8 +52,8 @@ def send_file(request):
         response['Content-Disposition'] = f'attachment; filename="{Path(file_location).stem}.mp4"'
 
         # Save prompt to the database
-        prompt = models.Prompt(text=text, font_size=font_size, frame_size=list(frame_size),
-                               background_color=list(bg_color), text_color=list(text_color),
+        prompt = models.Prompt(text=text, font_size=font_size, frame_size=frame_size,
+                               background_color=bg_color, text_color=text_color,
                                duration=duration, direction=direction)
         prompt.save()
 

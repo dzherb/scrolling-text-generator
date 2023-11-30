@@ -26,6 +26,6 @@ class Prompt(models.Model):
 
     def __str__(self):
         if len(self.text) > self.STR_MAX_LEN:
-            return f'{self.id}. {self.text[:self.STR_MAX_LEN]}...'
+            return f'{self.text[:self.STR_MAX_LEN]}...'
         else:
-            return f'{self.id}. {self.text}'
+            return f'{self.text}'

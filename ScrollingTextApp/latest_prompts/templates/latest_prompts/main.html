@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Latest prompts</title>
+</head>
+<body>
+
+
+<table style="border: 1px solid rgb(0, 0, 0);">
+  <tbody>
+    <tr>
+      <td style="border: 1px solid rgb(0, 0, 0);"><b>ID</b>
+      </td>
+      <td style="border: 1px solid rgb(0, 0, 0);"><b>Text</b>
+      </td>
+      <td style="border: 1px solid rgb(0, 0, 0);"><b>Font size</b>
+      </td>
+      <td style="border: 1px solid rgb(0, 0, 0);"><b>Frame size</b>
+      </td>
+      <td style="border: 1px solid rgb(0, 0, 0);"><b>Background color</b>
+      </td>
+      <td style="border: 1px solid rgb(0, 0, 0);"><b>Text color</b>
+      </td>
+      <td style="border: 1px solid rgb(0, 0, 0);"><b>Duration</b>
+      </td>
+      <td style="border: 1px solid rgb(0, 0, 0);"><b>Direction</b>
+      </td>
+      <td style="border: 1px solid rgb(0, 0, 0);"><b>Link</b>
+      </td>
+    </tr>
+    {% for prompt in prompts %}
+    <tr>
+    <td style="border: 1px solid rgb(0, 0, 0);">{{ prompt.id }}
+      </td>
+      <td style="border: 1px solid rgb(0, 0, 0);">{{ prompt }}
+      </td>
+      <td style="border: 1px solid rgb(0, 0, 0);">{{ prompt.font_size }}
+      </td>
+      <td style="border: 1px solid rgb(0, 0, 0);">{{ prompt.frame_size }}
+      </td>
+      <td style="border: 1px solid rgb(0, 0, 0);">{{ prompt.background_color }}
+      </td>
+      <td style="border: 1px solid rgb(0, 0, 0);">{{ prompt.text_color }}
+      </td>
+      <td style="border: 1px solid rgb(0, 0, 0);">{{ prompt.duration }}
+      </td>
+      <td style="border: 1px solid rgb(0, 0, 0);">{{ prompt.direction }}
+      </td>
+      <td style="border: 1px solid rgb(0, 0, 0);"><a href="{{ '#' }}">Click...</a>
+      </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
