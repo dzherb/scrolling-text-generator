@@ -18,7 +18,7 @@ class Prompt(models.Model):
                                   max_length=10, help_text='In pixels')
 
     bg_color = models.CharField(validators=[validate_comma_separated_integer_list],
-                                        max_length=15, help_text='In rgb', verbose_name='Background color')
+                                max_length=15, help_text='In rgb', verbose_name='Background color')
 
     text_color = models.CharField(validators=[validate_comma_separated_integer_list],
                                   max_length=15, help_text='In rgb')
