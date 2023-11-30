@@ -1,10 +1,10 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 from video_generator.models import Prompt
 
 
 def latest_prompts(request):
-    AMOUNT_OF_LATEST_PROMPTS = 10
+    """Return page with list of latest prompts"""
+    PROMPTS_ON_PAGE = 10
 
-    context = {'prompts': Prompt.objects.all()[:AMOUNT_OF_LATEST_PROMPTS]}
+    context = {'prompts': Prompt.objects.all()[:PROMPTS_ON_PAGE]}
     return render(request,'latest_prompts/main.html', context=context)
