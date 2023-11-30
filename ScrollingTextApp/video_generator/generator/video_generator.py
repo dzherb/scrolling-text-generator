@@ -3,15 +3,15 @@ import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
 
-def create_scrolling_text(text, font_path, font_size,
-                          file_path='scrolling_text.mp4',
-                          image_width=100, image_height=100,
-                          bg_color=(0, 50, 50), text_color=(0, 50, 50),
-                          fps=30, direction='left', duration=3):
+def create_scrolling_text(text='No input :(', font_path='arial.ttf', font_size=55,
+                          file_path='scrolling_text.mp4', image_size=(100, 100),
+                          bg_color=(200, 60, 50), text_color=(255, 255, 255),
+                          duration=3, direction='left', fps=30):
     """
     Makes a video with scrolling text.
     Saves mp4 file to the file_path.
     """
+    image_width, image_height = image_size
     font = ImageFont.truetype(font_path, font_size)
 
     # Get text size in pixels
@@ -33,7 +33,7 @@ def create_scrolling_text(text, font_path, font_size,
         if direction == 'left':
             x = image_width - int(i * speed)
         elif direction == 'right':
-            x = -(image_width - int(i * speed))
+            x = 0 - text_width + int(i * speed)
         else:
             raise ValueError("Invalid direction. Choose either 'left' or 'right'.")
 
@@ -47,8 +47,5 @@ def create_scrolling_text(text, font_path, font_size,
 
 if __name__ == '__main__':
     text = "Scrolling text"
-    font_path = "arial.ttf"
-    font_size = 55
-    duration = 3  # Продолжительность видео в секундах
 
-    create_scrolling_text(text, font_path, font_size, duration=duration)
+    create_scrolling_text(text, direction='right')
