@@ -11,65 +11,48 @@
     <link rel="stylesheet" type="text/css" href="{% static 'latest_prompts/main.css' %}">
     <title>Latest prompts</title>
     <style type="text/css">
-   TABLE {
-    width: 1000px; /* Ширина таблицы */
-   }
-   TD {
-    text-align: center; /* Выравнивание по центру */
-    border: 1px solid black; /* Параметры рамки */
-    padding: 6px; /* Поля вокруг текста */
-   }
-  </style>
+       TABLE {
+        width: 1000px;
+       }
+       TD {
+        text-align: center;
+        border: 1px solid black;
+        padding: 6px;
+       }
+    </style>
 </head>
 <body>
 
 <h1>Latest prompts</h1>
 
-<table style="border: 1px solid rgb(0, 0, 0);">
+<table>
   <tbody>
     <tr>
-      <td style="border: 1px solid rgb(0, 0, 0);"><b>ID</b>
-      </td>
-      <td style="border: 1px solid rgb(0, 0, 0);"><b>Text</b>
-      </td>
-      <td style="border: 1px solid rgb(0, 0, 0);"><b>Font size</b>
-      </td>
-      <td style="border: 1px solid rgb(0, 0, 0);"><b>Frame size</b>
-      </td>
-      <td style="border: 1px solid rgb(0, 0, 0);"><b>Background color</b>
-      </td>
-      <td style="border: 1px solid rgb(0, 0, 0);"><b>Text color</b>
-      </td>
-      <td style="border: 1px solid rgb(0, 0, 0);"><b>Duration</b>
-      </td>
-      <td style="border: 1px solid rgb(0, 0, 0);"><b>Direction</b>
-      </td>
-      <td style="border: 1px solid rgb(0, 0, 0);"><b>Link</b>
-      </td>
+      <td><b>ID</b></td>
+      <td><b>Text</b></td>
+      <td><b>Font size</b></td>
+      <td><b>Frame size</b></td>
+      <td><b>Background color</b></td>
+      <td><b>Text color</b></td>
+      <td><b>Duration</b></td>
+      <td><b>Direction</b></td>
+      <td><b>Link</b></td>
     </tr>
     {% for prompt in prompts %}
       <tr>
-        <td style="border: 1px solid rgb(0, 0, 0);">{{ prompt.id }}
-        </td>
-        <td style="border: 1px solid rgb(0, 0, 0);">{{ prompt }}
-        </td>
-        <td style="border: 1px solid rgb(0, 0, 0);">{{ prompt.font_size }}
-        </td>
-        <td style="border: 1px solid rgb(0, 0, 0);">{{ prompt.frame_size }}
-        </td>
-        <td style="border: 1px solid rgb(0, 0, 0); background: rgb({{ prompt.bg_color }})">
-        </td>
-        <td style="border: 1px solid rgb(0, 0, 0); background: rgb({{ prompt.text_color }})">
-        </td>
-        <td style="border: 1px solid rgb(0, 0, 0);">{{ prompt.duration }} sec
-        </td>
-        <td style="border: 1px solid rgb(0, 0, 0);">{{ prompt.direction }}
-        </td>
-        <td style="border: 1px solid rgb(0, 0, 0);">
+        <td>{{ prompt.id }}</td>
+        <td>{{ prompt }}</td>
+        <td>{{ prompt.font_size }}</td>
+        <td>{{ prompt.frame_size }}</td>
+        <td style="background: rgb({{ prompt.bg_color }})"></td>
+        <td style="background: rgb({{ prompt.text_color }})"></td>
+        <td>{{ prompt.duration }} sec</td>
+        <td>{{ prompt.direction }}</td>
+        <td>
           <a href="/runtext/?text={{ prompt.text }}&font_size={{ prompt.font_size }}&frame_size={{ prompt.frame_size }}&bg_color={{ prompt.bg_color }}&text_color={{ prompt.text_color }}&duration={{ prompt.duration }}&direction={{ prompt.direction }}">
             Click...
           </a>
-      </td>
+        </td>
       </tr>
     {% endfor %}
   </tbody>
