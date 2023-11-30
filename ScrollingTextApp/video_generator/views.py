@@ -33,8 +33,9 @@ def send_file(request):
 
         # Get duration of a video in seconds.
         duration = int(request.GET.get('d', f'{DEFAULT_DURATION}').strip())
-        #if not (0 > duration < 30):
-        #    raise ValueError  # We don't want to generate long videos.
+        # We need a reasonable number.
+        if duration > 30 or duration <= 0:
+            raise ValueError
 
         # Get a direction of a text. It can move to the 'left' side or to the 'right'.
         direction = request.GET.get('dir', DEFAULT_DIRECTION).strip()
@@ -54,11 +55,12 @@ def send_file(request):
 
         # Saving prompt to the database
         prompt = models.Prompt(text=text, font_size=font_size,
-                               frame_size=list(frame_size), bg_color=list(bg_color),
-                               text_color=list(text_color))
+                               frame_size=list(frame_size), background_color=list(bg_color),
+                               text_color=list(text_color), duration=duration, direction=direction)
         prompt.save()
 
-    except (IOError, TypeError, ValueError):
+    except (IOError, TypeError, ValueError) as e:
+        print(e)
         response = HttpResponseNotFound('<h1>Something went wrong, sorry :(</h1>')
 
     return response
