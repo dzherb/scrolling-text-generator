@@ -30,24 +30,27 @@
       </td>
     </tr>
     {% for prompt in prompts %}
-    <tr>
-    <td style="border: 1px solid rgb(0, 0, 0);">{{ prompt.id }}
-      </td>
-      <td style="border: 1px solid rgb(0, 0, 0);">{{ prompt }}
-      </td>
-      <td style="border: 1px solid rgb(0, 0, 0);">{{ prompt.font_size }}
-      </td>
-      <td style="border: 1px solid rgb(0, 0, 0);">{{ prompt.frame_size }}
-      </td>
-      <td style="border: 1px solid rgb(0, 0, 0);">{{ prompt.background_color }}
-      </td>
-      <td style="border: 1px solid rgb(0, 0, 0);">{{ prompt.text_color }}
-      </td>
-      <td style="border: 1px solid rgb(0, 0, 0);">{{ prompt.duration }}
-      </td>
-      <td style="border: 1px solid rgb(0, 0, 0);">{{ prompt.direction }}
-      </td>
-      <td style="border: 1px solid rgb(0, 0, 0);"><a href="{{ '#' }}">Click...</a>
+      <tr>
+        <td style="border: 1px solid rgb(0, 0, 0);">{{ prompt.id }}
+        </td>
+        <td style="border: 1px solid rgb(0, 0, 0);">{{ prompt }}
+        </td>
+        <td style="border: 1px solid rgb(0, 0, 0);">{{ prompt.font_size }}
+        </td>
+        <td style="border: 1px solid rgb(0, 0, 0);">{{ prompt.frame_size }}
+        </td>
+        <td style="border: 1px solid rgb(0, 0, 0);">{{ prompt.bg_color }}
+        </td>
+        <td style="border: 1px solid rgb(0, 0, 0);">{{ prompt.text_color }}
+        </td>
+        <td style="border: 1px solid rgb(0, 0, 0);">{{ prompt.duration }}
+        </td>
+        <td style="border: 1px solid rgb(0, 0, 0);">{{ prompt.direction }}
+        </td>
+        <td style="border: 1px solid rgb(0, 0, 0);">
+          <a href="/runtext/?text={{ prompt.text }}&font_size={{ prompt.font_size }}&frame_size={{ prompt.frame_size }}&bg_color={{ prompt.bg_color }}&text_color={{ prompt.text_color }}&duration={{ prompt.duration }}&direction={{ prompt.direction }}">
+            Click...
+          </a>
       </td>
       </tr>
     {% endfor %}
