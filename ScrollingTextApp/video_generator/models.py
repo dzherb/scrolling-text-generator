@@ -8,12 +8,18 @@ class Prompt(models.Model):
     prompt_id = models.AutoField(primary_key=True)
     text = models.TextField(help_text="User's input")
     font_size = models.IntegerField(help_text='Font size')
+    duration = models.IntegerField(help_text='In seconds')
+    direction = models.CharField(max_length=5, help_text='Can be "left" or "right"')
+
     frame_size = models.CharField(validators=[validate_comma_separated_integer_list],
-                                  max_length=10, help_text='Frame size in pixels')
-    bg_color = models.CharField(validators=[validate_comma_separated_integer_list], max_length=15)
-    text_color = models.CharField(validators=[validate_comma_separated_integer_list], max_length=15)
-    duration = models.IntegerField(help_text='Video duration in seconds')
-    direction = models.CharField(max_length=5, help_text='Text direction')
+                                  max_length=10, help_text='In pixels')
+
+    background_color = models.CharField(validators=[validate_comma_separated_integer_list],
+                                        max_length=15, help_text='In rgb')
+
+    text_color = models.CharField(validators=[validate_comma_separated_integer_list],
+                                  max_length=15, help_text='In rgb')
+
 
     def __str__(self):
         if len(self.text) > self.STR_MAX_LEN:

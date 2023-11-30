@@ -21,7 +21,7 @@ def send_file(request):
         font_size = int(request.GET.get('font_size', f'{DEFAULT_FONT_SIZE}'))
 
         # Get image size as a tuple - (image_width, image_height). Size is in pixels.
-        frame_size = request.GET.get('image_size', f'{",".join(map(str, DEFAULT_IMAGE_SIZE))}')
+        frame_size = request.GET.get('frame_size', f'{",".join(map(str, DEFAULT_IMAGE_SIZE))}')
         frame_size = tuple(int(dimension.strip()) for dimension in frame_size.split(','))
 
         # Get background color in rgb format as a tuple - (r, g, b)
