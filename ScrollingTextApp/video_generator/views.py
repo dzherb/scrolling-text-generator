@@ -2,6 +2,8 @@ from pathlib import Path
 from django.http import HttpResponseNotFound, FileResponse
 from django.shortcuts import render
 from .generator.video_generator import create_scrolling_text
+from . import models
+
 
 def send_file(request):
     """Makes a video file from user's input and sends it back"""
@@ -36,6 +38,10 @@ def send_file(request):
         # Creating a response.
         response = FileResponse(open(file_location, 'rb'))
         response['Content-Disposition'] = f'attachment; filename="{Path(file_location).stem}.mp4"'
+
+        # Saving prompt to the database
+        prompt = models.Prompt(text=text)
+        prompt.save()
 
     except (IOError, TypeError):
         response = HttpResponseNotFound('<h1>Something went wrong, sorry :(</h1>')
