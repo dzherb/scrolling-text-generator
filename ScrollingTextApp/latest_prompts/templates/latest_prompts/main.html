@@ -16,7 +16,11 @@
     <div class="position-absolute top-0 start-50 translate-middle-x">
         <span class="border border-white">
             <h1 style="text-align: center;">
-            Latest prompts
+                {% if amount_of_prompts < max_prompts %}
+                    Latest prompts
+                {% else %}
+                    {{ max_prompts }} latest prompts
+                {% endif %}
             </h1></span>
         <table>
           <tbody>
