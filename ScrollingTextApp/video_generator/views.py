@@ -7,6 +7,7 @@ from . import models
 
 def send_file(request):
     """Makes a video file from user's input and sends it back"""
+    # Set defaults
     DEFAULT_TEXT = 'No input :('
     DEFAULT_FONT_SIZE = 55
     DEFAULT_FRAME_SIZE = (100, 100)
@@ -14,6 +15,9 @@ def send_file(request):
     DEFAULT_TEXT_COLOR = (255, 255, 255)
     DEFAULT_DURATION = 3
     DEFAULT_DIRECTION = 'left'
+    # Set maximums
+    MAXIMUM_FRAME_SIZE = 500
+    MAXIMUM_DURATION = 30
 
     try:  # Get parameters from url.
         text = request.GET.get('text', DEFAULT_TEXT).strip()
@@ -23,6 +27,9 @@ def send_file(request):
         # Get image size as a tuple - (image_width, image_height). Size is in pixels.
         frame_size_str = request.GET.get('frame_size', f'{",".join(map(str, DEFAULT_FRAME_SIZE))}')
         frame_size = tuple(int(dimension.strip()) for dimension in frame_size_str.split(','))
+        # Check if width and height are valid.
+        if any([False if 0 < edge <= MAXIMUM_FRAME_SIZE else True for edge in frame_size]):
+            raise ValueError
 
         # Get background color in rgb format as a tuple - (r, g, b)
         bg_color_str = request.GET.get('bg_color', f'{",".join(map(str, DEFAULT_BG_COLOR))}')
@@ -33,8 +40,8 @@ def send_file(request):
 
         # Get duration of a video in seconds.
         duration = int(request.GET.get('d', f'{DEFAULT_DURATION}').strip())
-        # We need a reasonable number.
-        if duration > 30 or duration <= 0:
+        # We need a reasonable value.
+        if duration > MAXIMUM_DURATION or duration <= 0:
             raise ValueError
 
         # Get a direction of a text. It can move to the 'left' side or to the 'right'.
@@ -47,7 +54,7 @@ def send_file(request):
         create_scrolling_text(text=text, font_size=font_size, file_path=file_location, frame_size=frame_size,
                               bg_color=bg_color, text_color=text_color, duration=duration, direction=direction)
 
-        # Creating a response.
+        # Create a response.
         response = FileResponse(open(file_location, 'rb'))
         response['Content-Disposition'] = f'attachment; filename="{Path(file_location).stem}.mp4"'
 
