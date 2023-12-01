@@ -10,47 +10,40 @@
 
     <link rel="stylesheet" type="text/css" href="{% static 'latest_prompts/main.css' %}">
     <title>Latest prompts</title>
-    <style type="text/css">
-       TABLE {
-        width: 1000px;
-       }
-       TD {
-        text-align: center;
-        border: 1px solid black;
-        padding: 6px;
-       }
-    </style>
 </head>
 <body>
 <div class="position-relative">
     <div class="position-absolute top-0 start-50 translate-middle-x">
-        <span class="border border-white"><h1 style="text-align: center;">Latest prompts</h1></span>
+        <span class="border border-white">
+            <h1 style="text-align: center;">
+            Latest prompts
+            </h1></span>
         <table>
           <tbody>
             <tr>
-              <td><b>ID</b></td>
-              <td><b>Text</b></td>
-              <td><b>Font size</b></td>
-              <td><b>Frame size</b></td>
-              <td><b>Background color</b></td>
-              <td><b>Text color</b></td>
-              <td><b>Duration</b></td>
-              <td><b>Direction</b></td>
-              <td><b>Link</b></td>
+              <th>ID</th>
+              <th>Text</th>
+              <th>Font size</th>
+              <th>Frame size</th>
+              <th>Background color</th>
+              <th>Text color</th>
+              <th>Duration</th>
+              <th>Direction</th>
+              <th>Link</th>
             </tr>
             {% for prompt in prompts %}
               <tr>
                 <td>{{ prompt.id }}</td>
                 <td>{{ prompt }}</td>
-                <td>{{ prompt.font_size }}</td>
+                <td>{{ prompt.font_size }} </td>
                 <td>{{ prompt.frame_size }}</td>
-                <td style="background: rgb({{ prompt.bg_color }})"></td>
-                <td style="background: rgb({{ prompt.text_color }})"></td>
+                <td><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb({{ prompt.bg_color }})" class="bi bi-circle-fill" viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/></svg></td>
+                <td><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb({{ prompt.text_color }})" class="bi bi-circle-fill" viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/></svg></td>
                 <td>{{ prompt.duration }} sec</td>
                 <td>{{ prompt.direction }}</td>
                 <td>
                   <a href="/runtext/?text={{ prompt.text }}&font_size={{ prompt.font_size }}&frame_size={{ prompt.frame_size }}&bg_color={{ prompt.bg_color }}&text_color={{ prompt.text_color }}&duration={{ prompt.duration }}&direction={{ prompt.direction }}">
-                    Click...
+                    Click
                   </a>
                 </td>
               </tr>
@@ -58,8 +51,9 @@
           </tbody>
         </table>
         <p></p>
-        <p><a href="/">Back to the home page</a></p>
+        <p><a href="/">Back to the home page...</a></p>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>

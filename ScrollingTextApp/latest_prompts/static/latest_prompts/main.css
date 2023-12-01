@@ -12,6 +12,20 @@ ul {
   margin: 0;
 }
 
+table {
+  width: 1000px;
+}
+
+th {
+  color: #444444;
+}
+
+td, th {
+  text-align: center;
+  border: 1px solid grey;
+  padding: 6px;
+}
+
 .bg-steel {
   background-color: #5f788a;
 }
