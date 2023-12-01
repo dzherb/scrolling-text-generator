@@ -41,12 +41,20 @@
                 <td>{{ prompt }}</td>
                 <td>{{ prompt.font_size }} </td>
                 <td>{{ prompt.frame_size }}</td>
-                <td><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb({{ prompt.bg_color }})" class="bi bi-circle-fill" viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/></svg></td>
-                <td><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb({{ prompt.text_color }})" class="bi bi-circle-fill" viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/></svg></td>
+                <td>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb({{ prompt.bg_color }})" class="bi bi-circle-fill" viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/>
+                        <title>rgb({{ prompt.bg_color }})</title>
+                    </svg>
+                </td>
+                <td>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb({{ prompt.text_color }})" class="bi bi-circle-fill" viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/>
+                        <title>rgb({{ prompt.text_color }})</title>
+                    </svg>
+                </td>
                 <td>{{ prompt.duration }} sec</td>
                 <td>{{ prompt.direction }}</td>
                 <td>
-                  <a href="/runtext/?text={{ prompt.text }}&font_size={{ prompt.font_size }}&frame_size={{ prompt.frame_size }}&bg_color={{ prompt.bg_color }}&text_color={{ prompt.text_color }}&duration={{ prompt.duration }}&direction={{ prompt.direction }}">
+                  <a href="/runtext/?text={{ prompt.text }}&font_size={{ prompt.font_size }}&frame_size={{ prompt.frame_size }}&bg_color={{ prompt.bg_color }}&text_color={{ prompt.text_color }}&d={{ prompt.duration }}&dir={{ prompt.direction }}">
                     Click
                   </a>
                 </td>
