@@ -3,8 +3,8 @@ import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
 
-def create_scrolling_text(text='No input :(', font_path='video_generator/generator/fonts/arial.ttf', font_size=55,
-                          file_path='test.mp4', frame_size=(100, 100),
+def create_scrolling_text(text='No input :(', font_path='video_generator/generator/fonts/arial.ttf',
+                          font_size=55, file_path='test.mp4', frame_size=(100, 100),
                           bg_color=(200, 60, 50), text_color=(255, 255, 255),
                           duration=3, direction='left', fps=30):
     """
